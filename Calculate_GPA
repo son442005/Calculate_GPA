@@ -1,0 +1,43 @@
+#Check if the input is valid or not
+def inputNumber(promt):
+    
+    while True:
+        try:
+            magicNumber = float(input(promt))
+            return magicNumber
+        except Exception:
+            print("Value Error!!")
+
+#Calculate GPA
+def calculate_gpa():
+    product = 0
+    for i in range(0,len(subjects)):
+        product += grades[i] * credits[i]
+    return product / (sum(credits))
+
+#Store and print out student names and Gpa
+def print_gpa():
+    print(f"Student Name: {name}")
+    print(f"Your GPA is: {calculate_gpa()}")
+
+#Execute the code
+name = input("Enter the student's name: ")
+subjects = ["C#", "Python", "Java"] #subject
+grades = [] #grade
+credits = [] #credit
+print("=====Calculate GPA=====")
+for subject in subjects:
+    grade = inputNumber(f"Input grade for {subject}: ")
+    grades.append(grade)
+    credit = inputNumber(f"Input credit for {subject}: ")
+    credits.append(credit)
+print("=====Calculate GPA=====")
+print_gpa()
+
+#Print to text file
+f = open("Gpa_file.txt", "w")
+f.writelines(f"Student's name: {str(name)}\n")
+f.writelines(f"Subjects: {subjects}\n")
+f.writelines(f"Grades: {str(grades)}\n")
+f.writelines(f"Credits: {str(credits)}")
+f.close()
